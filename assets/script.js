@@ -18,7 +18,7 @@ const slides = [
 ]
 
 
-// PUCES
+// CRÉATION DES PUCES DU SLIDER
 
 // Création d'une boucle FOR pour afficher le nombre de puces (4) en fonction du nombre de slides (4)
 for (let i = 0; i < slides.length; i++) { 
@@ -29,11 +29,13 @@ for (let i = 0; i < slides.length; i++) {
 	dots.appendChild(dot);
 }
 
+// CRÉATION D'UNE FONCTION POUR MODIFIER LE SLIDE
+
 // On sélectionne l'image et le texte du document via sa classe
 let bannerImg = document.querySelector('.banner-img');
 let bannerText = document.querySelector('.banner-text');
 
-// On déclare une variable slideIndex égale à 0 pour stocker l'index de la première slide et ainsi permettre de savoir sur quelle slide on se trouve : 0 = slide1.jpg
+// On initialise une variable slideIndex pour stocker l'index de la première slide et ainsi permettre de savoir sur quelle slide on se trouve : 0 = slide1.jpg
 let slideIndex = 0;
 
 // On crée une fonction changeSlide pour mettre à jour l'image et le texte du slider au clic sur les flèches
@@ -41,15 +43,15 @@ function changeSlide() {
 	bannerImg.src = `./assets/images/slideshow/${slides[slideIndex].image}`;
 	bannerText.innerHTML = slides[slideIndex].tagLine;
 }
-changeSlide();
 
 
-// FLÈCHES
+// CRÉATION DES ÉCOUTEURS D'ÉVÉNEMENT POUR RENDRE LES FLÈCHES DYNAMIQUES AU CLIC
 
 // ÉCOUTEUR D'ÉVÉNEMENT FLECHE DROITE > SLIDE SUIVANTE
 let arrowRight = document.querySelector('.arrow_right');
 arrowRight.addEventListener('click', function() {
 	slideIndex++;
+	
 	// DÉFILEMENT CONTINUE
 	if (slideIndex>= slides.length) {
 		slideIndex = 0;
@@ -58,6 +60,7 @@ arrowRight.addEventListener('click', function() {
 	// CHANGEMENT DE LA PUCE SÉLECTIONNÉE
 	let dotSelected = document.querySelector('.dot_selected');
 	dotSelected.className = "dot dot"+(slideIndex-1);
+	
 	// DÉFILEMENT CONTINUE
 	if (slideIndex === 0) {dotSelected.className = "dot dot"+(slides.length-1);}
 	dotSelected = document.querySelector('.dot'+slideIndex);
@@ -69,6 +72,7 @@ arrowRight.addEventListener('click', function() {
 let arrowLeft = document.querySelector('.arrow_left');
 arrowLeft.addEventListener('click', function() {
 	slideIndex--;
+	
 	// DÉFILEMENT CONTINUE
 	if (slideIndex < 0) {
 		slideIndex = slides.length - 1;
@@ -77,6 +81,7 @@ arrowLeft.addEventListener('click', function() {
 	// CHANGEMENT DE LA PUCE SÉLECTIONNÉE
 	let dotSelected = document.querySelector('.dot_selected');
 	dotSelected.className = "dot dot"+(slideIndex+1);
+	
 	// DÉFILEMENT CONTINUE
 	if (slideIndex === (slides.length-1)) {dotSelected.className = "dot dot0";}
 	dotSelected = document.querySelector('.dot'+slideIndex);
