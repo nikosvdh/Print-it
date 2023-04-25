@@ -29,54 +29,57 @@ for (let i = 0; i < slides.length; i++) {
 	dots.appendChild(dot);
 }
 
-// On récupère dans le DOM les classes image et texte de la slide
+// On sélectionne l'image et le texte du document via sa classe
 let bannerImg = document.querySelector('.banner-img');
 let bannerText = document.querySelector('.banner-text');
 
-// on déclare une variable slideNumber égale à 0 pour stocker l'index de la première image et ainsi permettre de savoir sur quelle slide on se trouve : 0 = slide1.jpg
-let slideNumber = 0;
+// On déclare une variable slideIndex égale à 0 pour stocker l'index de la première slide et ainsi permettre de savoir sur quelle slide on se trouve : 0 = slide1.jpg
+let slideIndex = 0;
 
-
-// On crée une fonction changeSlide pour mettre à jour l'image et le texte du slider lorsqu'on clique sur les flèches
+// On crée une fonction changeSlide pour mettre à jour l'image et le texte du slider au clic sur les flèches
 function changeSlide() {
-	bannerImg.src = `./assets/images/slideshow/${slides[slideNumber].image}`;
-	bannerText.innerHTML = slides[slideNumber].tagLine;
+	bannerImg.src = `./assets/images/slideshow/${slides[slideIndex].image}`;
+	bannerText.innerHTML = slides[slideIndex].tagLine;
 }
 changeSlide();
 
 
 // FLÈCHES
 
-// ÉVÉNEMENT FLECHE DROITE > SLIDE SUIVANTE
+// ÉCOUTEUR D'ÉVÉNEMENT FLECHE DROITE > SLIDE SUIVANTE
 let arrowRight = document.querySelector('.arrow_right');
 arrowRight.addEventListener('click', function() {
-	slideNumber++;
-	if (slideNumber >= slides.length) {
-		slideNumber = 0;
+	slideIndex++;
+	// DÉFILEMENT CONTINUE
+	if (slideIndex>= slides.length) {
+		slideIndex = 0;
 	}
 
-	// Changement de la puce sélectionnée
+	// CHANGEMENT DE LA PUCE SÉLECTIONNÉE
 	let dotSelected = document.querySelector('.dot_selected');
-	dotSelected.className = "dot dot"+(slideNumber-1);
-	if (slideNumber === 0) {dotSelected.className = "dot dot"+(slides.length-1);}
-	dotSelected = document.querySelector('.dot'+slideNumber);
-	dotSelected.className = "dot " + "dot"+ slideNumber + " dot_selected" ;
+	dotSelected.className = "dot dot"+(slideIndex-1);
+	// DÉFILEMENT CONTINUE
+	if (slideIndex === 0) {dotSelected.className = "dot dot"+(slides.length-1);}
+	dotSelected = document.querySelector('.dot'+slideIndex);
+	dotSelected.className = "dot " + "dot"+ slideIndex + " dot_selected" ;
 	changeSlide();
 });
 
-// ÉVÉNEMENT FLECHE GAUCHE > SLIDE PRÉCÉDENTE
+// ÉCOUTEUR D'ÉVÉNEMENT FLECHE GAUCHE > SLIDE PRÉCÉDENTE
 let arrowLeft = document.querySelector('.arrow_left');
 arrowLeft.addEventListener('click', function() {
-	slideNumber--;
-	if (slideNumber < 0) {
-		slideNumber = slides.length - 1;
+	slideIndex--;
+	// DÉFILEMENT CONTINUE
+	if (slideIndex < 0) {
+		slideIndex = slides.length - 1;
 	}
 
-	// Changement de la puce sélectionnée
+	// CHANGEMENT DE LA PUCE SÉLECTIONNÉE
 	let dotSelected = document.querySelector('.dot_selected');
-	dotSelected.className = "dot dot"+(slideNumber+1);
-	if (slideNumber === (slides.length-1)) {dotSelected.className = "dot dot0";}
-	dotSelected = document.querySelector('.dot'+slideNumber);
-	dotSelected.className = "dot " + "dot"+ slideNumber + " dot_selected" ;
+	dotSelected.className = "dot dot"+(slideIndex+1);
+	// DÉFILEMENT CONTINUE
+	if (slideIndex === (slides.length-1)) {dotSelected.className = "dot dot0";}
+	dotSelected = document.querySelector('.dot'+slideIndex);
+	dotSelected.className = "dot " + "dot"+ slideIndex + " dot_selected" ;
 	changeSlide();
 });
