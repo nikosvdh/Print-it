@@ -22,7 +22,7 @@ const slides = [
 
 // Création d'une boucle FOR pour afficher le nombre de puces (4) en fonction du nombre de slides (4)
 for (let i = 0; i < slides.length; i++) { 
-	let dots = document.getElementById('dots'); 
+	let dots = document.querySelector('.dots'); 
 	let dot = document.createElement("div"); 
 	dot.className = "dot dot"+i; 
 	if ( i === 0 ){dot.className = "dot " + "dot"+i + " dot_selected";} 
@@ -32,8 +32,8 @@ for (let i = 0; i < slides.length; i++) {
 // CRÉATION D'UNE FONCTION POUR MODIFIER LE SLIDE
 
 // On sélectionne l'image et le texte du document via sa classe
-let bannerImg = document.querySelector('.banner-img');
-let bannerText = document.querySelector('.banner-text');
+const bannerImg = document.querySelector('.banner-img');
+const bannerText = document.querySelector('.banner-text');
 
 // On initialise une variable slideIndex pour stocker l'index de la première slide et ainsi permettre de savoir sur quelle slide on se trouve : 0 = slide1.jpg
 let slideIndex = 0;
@@ -48,7 +48,7 @@ function changeSlide() {
 // CRÉATION DES ÉCOUTEURS D'ÉVÉNEMENT POUR RENDRE LES FLÈCHES DYNAMIQUES AU CLIC
 
 // ÉCOUTEUR D'ÉVÉNEMENT FLECHE DROITE > SLIDE SUIVANTE
-let arrowRight = document.querySelector('.arrow_right');
+const arrowRight = document.querySelector('.arrow_right');
 arrowRight.addEventListener('click', function() {
 	slideIndex++;
 	
@@ -69,7 +69,7 @@ arrowRight.addEventListener('click', function() {
 });
 
 // ÉCOUTEUR D'ÉVÉNEMENT FLECHE GAUCHE > SLIDE PRÉCÉDENTE
-let arrowLeft = document.querySelector('.arrow_left');
+const arrowLeft = document.querySelector('.arrow_left');
 arrowLeft.addEventListener('click', function() {
 	slideIndex--;
 	
