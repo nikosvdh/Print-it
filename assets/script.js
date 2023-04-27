@@ -20,7 +20,7 @@ const slides = [
 
 // CRÉATION DES PUCES DU SLIDER
 
-// Création d'une boucle FOR pour afficher le nombre de puces (4) en fonction du nombre de slides (4)
+// Création d'une boucle FOR pour afficher le nombre de puces en fonction du nombre de slides
 for (let i = 0; i < slides.length; i++) { 
 	let dots = document.querySelector('.dots'); 
 	let dot = document.createElement("div"); 
@@ -31,7 +31,7 @@ for (let i = 0; i < slides.length; i++) {
 
 // CRÉATION D'UNE FONCTION POUR MODIFIER LE SLIDE
 
-// On sélectionne l'image et le texte du document via sa classe
+// Création de variables qui sélectionnent l'image et le texte du document via leur classe
 const bannerImg = document.querySelector('.banner-img');
 const bannerText = document.querySelector('.banner-text');
 
@@ -44,7 +44,6 @@ function changeSlide() {
 	bannerText.innerHTML = slides[slideIndex].tagLine;
 }
 
-
 // CRÉATION DES ÉCOUTEURS D'ÉVÉNEMENT POUR RENDRE LES FLÈCHES DYNAMIQUES AU CLIC
 
 // ÉCOUTEUR D'ÉVÉNEMENT FLECHE DROITE > SLIDE SUIVANTE
@@ -52,7 +51,7 @@ const arrowRight = document.querySelector('.arrow_right');
 arrowRight.addEventListener('click', function() {
 	slideIndex++;
 	
-	// DÉFILEMENT CONTINUE
+	// DÉFILEMENT CONTINUE DES SLIDES
 	if (slideIndex>= slides.length) {
 		slideIndex = 0;
 	}
@@ -61,10 +60,12 @@ arrowRight.addEventListener('click', function() {
 	let dotSelected = document.querySelector('.dot_selected');
 	dotSelected.className = "dot dot"+(slideIndex-1);
 	
-	// DÉFILEMENT CONTINUE
+	// DÉFILEMENT CONTINUE DE LA PUCE SÉLECTIONNÉE
 	if (slideIndex === 0) {dotSelected.className = "dot dot"+(slides.length-1);}
+	
 	dotSelected = document.querySelector('.dot'+slideIndex);
 	dotSelected.className = "dot " + "dot"+ slideIndex + " dot_selected" ;
+	
 	changeSlide();
 });
 
@@ -73,7 +74,7 @@ const arrowLeft = document.querySelector('.arrow_left');
 arrowLeft.addEventListener('click', function() {
 	slideIndex--;
 	
-	// DÉFILEMENT CONTINUE
+	// DÉFILEMENT CONTINUE DES SLIDES
 	if (slideIndex < 0) {
 		slideIndex = slides.length - 1;
 	}
@@ -82,9 +83,11 @@ arrowLeft.addEventListener('click', function() {
 	let dotSelected = document.querySelector('.dot_selected');
 	dotSelected.className = "dot dot"+(slideIndex+1);
 	
-	// DÉFILEMENT CONTINUE
+	// DÉFILEMENT CONTINUE DE LA PUCE SÉLECTIONNÉE
 	if (slideIndex === (slides.length-1)) {dotSelected.className = "dot dot0";}
+	
 	dotSelected = document.querySelector('.dot'+slideIndex);
 	dotSelected.className = "dot " + "dot"+ slideIndex + " dot_selected" ;
+	
 	changeSlide();
 });
